@@ -84,7 +84,7 @@
 }
 
 .card {
-  margin: 0.8rem;
+  margin: 0.5rem;
   padding: 1.5rem;
   text-align: left;
   color: inherit;
@@ -140,7 +140,20 @@
 
 @media (max-width: 600px) {
   .grid {
-    width: 100%;
-    flex-direction: column;
+    width: 100%; 
+  }
+  .container {
+    padding: 0 1rem;
+  }
+  .title {
+    font-size: 3rem;
+  }
+  .smalltext {
+    text-align: center;
+  }
+  .description {
+    margin: 2rem 1rem 0.5rem 1rem;
+    line-height: 1;
+    font-size: 1.5rem;
   }
 }

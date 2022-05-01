@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import html2canvas from 'html2canvas';
 
 export default function Home() {
 
@@ -20,6 +19,27 @@ export default function Home() {
     }  
   }
 
+  const logos = [
+    {imgURL: '/logos/airflow_icon.png', imgType: 'icon'},
+    {imgURL: '/logos/airflow_logo.png', imgType: 'logo'},
+    {imgURL: "/logos/amundsen_logo.png", imgType: 'icon'},
+    {imgURL: "/logos/bigeye_icon.png", imgType: 'icon'},
+    {imgURL: "/logos/bigeye_logo.png", imgType: 'logo'},
+    {imgURL: "/logos/census_icon.png", imgType: 'icon'},
+    {imgURL: "/logos/census_logo.png", imgType: 'logo'},
+    {imgURL: "/logos/databricks_icon.png", imgType: 'icon'},
+    {imgURL: "/logos/databricks_logo.png", imgType: 'logo'},
+    {imgURL: "/logos/dbt_icon.png", imgType: 'icon'},
+    {imgURL: "/logos/dbt_logo.png", imgType: 'logo'},
+    {imgURL: "/logos/fivetran_icon.png", imgType: 'icon'},
+    {imgURL: "/logos/fivetran_logo.png", imgType: 'logo'},
+    {imgURL: "/logos/prefect_icon.png", imgType: 'icon'},
+    {imgURL: "/logos/prefect_logo_black.png", imgType: 'logo'},
+    {imgURL: "/logos/snowflake_icon.png", imgType: 'icon'},
+    {imgURL: "/logos/snowflake_logo.png", imgType: 'logo'},
+    {imgURL: "/logos/stemma_logo_black.png", imgType: 'logo'},
+    {imgURL: "/logos/stitch_logo.png", imgType: 'logo'},
+  ];
 
   return (
     <div className={styles.container}>
@@ -35,99 +55,31 @@ export default function Home() {
         </h1>
 
         <p className={styles.description}>
-          Much modern. Such stack. So data. Wow. <img className={styles.doge} src="/doge.gif" />
+          Much modern. Such stack. So data. Wow. <Image src="/doge.gif" layout="fixed" width={25} height={25} alt="Such doge." />
         </p>
         <p className={styles.smalltext}>
-          On Chrome click an image to copy to clipboard. On other browsers right click and copy image.
+          Click any logo to copy to your clipboard! (Chrome only for now)
         </p>
 
         <div className={styles.grid}>
 
-          <div onClick={(e => copyImage(e, "/logos/airflow_icon.png"))} className={styles.card}>
-            <img className={styles.iconimg} src="/logos/airflow_icon.png"></img>
-          </div>
-
-          <a onClick={(e => copyImage(e, "/logos/airflow_logo.png"))} className={styles.card}>
-            <img className={styles.logoimg} src="/logos/airflow_logo.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/amundsen_icon.png"))} className={styles.card}>
-            <img className={styles.iconimg} src="/logos/amundsen_icon.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/amundsen_logo.png"))} className={styles.card}>
-            <img className={styles.logoimg} src="/logos/amundsen_logo.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/bigeye_icon.png"))} className={styles.card}>
-            <img className={styles.iconimg} src="/logos/bigeye_icon.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/bigeye_logo.png"))} className={styles.card}>
-            <img className={styles.logoimg} src="/logos/bigeye_logo.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/census_icon.png"))} className={styles.card}>
-            <img className={styles.iconimg} src="/logos/census_icon.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/census_logo.png"))} className={styles.card}>
-            <img className={styles.logoimg} src="/logos/census_logo.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/databricks_icon.png"))} className={styles.card}>
-            <img className={styles.iconimg} src="/logos/databricks_icon.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/databricks_logo.png"))} className={styles.card}>
-            <img className={styles.logoimg} src="/logos/databricks_logo.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/dbt_icon.png"))} className={styles.card}>
-            <img className={styles.iconimg} src="/logos/dbt_icon.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/dbt_logo.png"))} className={styles.card}>
-            <img className={styles.logoimg} src="/logos/dbt_logo.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/fivetran_icon.png"))} className={styles.card}>
-            <img className={styles.iconimg} src="/logos/fivetran_icon.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/fivetran_logo.png"))} className={styles.card}>
-            <img className={styles.logoimg} src="/logos/fivetran_logo.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/prefect_icon.png"))} className={styles.card}>
-            <img className={styles.iconimg} src="/logos/prefect_icon.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/prefect_logo_black.png"))} className={styles.card}>
-            <img className={styles.logoimg} src="/logos/prefect_logo_black.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/snowflake_icon.png"))} className={styles.card}>
-            <img className={styles.iconimg} src="/logos/snowflake_icon.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/snowflake_logo.png"))} className={styles.card}>
-            <img className={styles.logoimg} src="/logos/snowflake_logo.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/stemma_logo_black.png"))} className={styles.card}>
-            <img className={styles.logoimg} src="/logos/stemma_logo_black.png"></img>
-          </a>
-
-          <a onClick={(e => copyImage(e, "/logos/stitch_logo.png"))} className={styles.card}>
-            <img className={styles.logoimg} src="/logos/stitch_logo.png"></img>
-          </a>
+          {logos.map(function(logoItem) {
+            const imgURL = logoItem.imgURL;
+            const imgType = logoItem.imgType;
+            return (
+              <div key={logoItem.imgURL} onClick={(e => copyImage(e, {imgURL}))} className={styles.card}>
+                <div className={styles.cardContainer}>
+                  <Image className={styles.iconimg} src={imgURL} layout="fill" alt="A wild logo appears."/>
+                </div>
+              </div> 
+            )
+          })}
 
         </div>
 
         <div className={styles.footer}>
           <p className={styles.smalltext}> 
-            SVGs and variants for dark backgrounds may or may not be coming soon. Feel like we're missing a logo? Fire up Twitter and/or LinkedIn and complain about it for some easy likes!
+            SVGs and variants for dark backgrounds may or may not be coming soon.
           </p>
         </div>
       </main>

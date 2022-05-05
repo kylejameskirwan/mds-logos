@@ -74,9 +74,6 @@ export default function Home() {
         <p className={styles.description}>
           Much modern. Such stack. So data. Wow. <Image src="/doge.gif" layout="fixed" width={25} height={25} alt="Such doge." />
         </p>
-        <p className={styles.smalltext}>
-          Click any logo to copy to your clipboard! (Chrome only for now)
-        </p>
 
         <div className={styles.grid}>
 

@@ -167,6 +167,34 @@
   object-fit: contain;
 }
 
+.sections {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section {
+  margin: 2rem 0;
+  padding: 1rem;
+}
+
+.sectionTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+  text-align: left;
+  width: 100%;
+}
+
+.sectionGrid {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%; 
@@ -184,5 +212,12 @@
     margin: 2rem 1rem 0.5rem 1rem;
     line-height: 1;
     font-size: 1.5rem;
+  }
+  .sectionTitle {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .sectionGrid {
+    justify-content: center;
   }
 }

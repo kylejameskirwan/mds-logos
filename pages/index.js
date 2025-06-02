@@ -123,9 +123,7 @@ export default function Home() {
     'Databases': [
       {imgURL: "/logos/postgres_icon.png", imgType: 'icon'},
       {imgURL: "/logos/postgres_logo.png", imgType: 'logo'},
-      {imgURL: "/logos/mysql_icon.png", imgType: 'icon'},
       {imgURL: "/logos/mysql_logo.png", imgType: 'logo'},
-      {imgURL: "/logos/sqlserver_icon.png", imgType: 'icon'},
       {imgURL: "/logos/sqlserver_logo.png", imgType: 'logo'},
     ],
     'Everything Else': [

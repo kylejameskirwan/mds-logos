@@ -28,7 +28,76 @@
 }
 
 .container {
+  padding: 0;
+  width: 100%;
+}
+
+.navigation {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 60px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eaeaea;
+  z-index: 1000;
+}
+
+.navContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 0 2rem;
+}
+
+.navTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.navList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.navItem {
+  margin: 0;
+}
+
+.navLink {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.75rem;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: #0070f3;
+}
+
+.buyTokens {
+  background-color: #0070f3;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.buyTokens:hover {
+  background-color: #0051b3;
 }
 
 .main {
@@ -37,8 +106,9 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  margin-top: 60px;
 }
 
 .footer {
@@ -193,6 +263,57 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0;
+  }
+
+  .navContent {
+    padding: 0;
+  }
+
+  .navList {
+    position: static;
+    transform: none;
+    overflow-x: auto;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    padding: 0 1rem;
+    margin-right: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .buyTokens {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    margin-right: 1rem;
+  }
+
+  .main {
+    padding-top: 1rem;
+  }
+
+  .title {
+    font-size: 3rem;
+    margin-top: 1rem;
+  }
+
+  .description {
+    margin: 2rem 1rem 0.5rem 1rem;
+    line-height: 1;
+    font-size: 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .sectionGrid {
+    justify-content: center;
+  }
 }
 
 @media (max-width: 600px) {

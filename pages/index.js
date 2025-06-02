@@ -2,22 +2,56 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+import React, { useState } from 'react';
 
-  const copyImage = async (e, imgURL) => {
+function CopyableLogo({ imgURL, imgType }) {
+  const [feedback, setFeedback] = useState('');
+
+  const copyImage = async (e) => {
+    e.preventDefault();
     try {
-      const data = await fetch(imgURL);
-      const blob = await data.blob();
-      await navigator.clipboard.write([
-        new ClipboardItem({
-          [blob.type]: blob
-        })
-      ]);
-      console.log('Image copied.');
+      if (navigator.clipboard && navigator.clipboard.write) {
+        const response = await fetch(imgURL);
+        const blob = await response.blob();
+        const item = new ClipboardItem({ [blob.type]: blob });
+        await navigator.clipboard.write([item]);
+        setFeedback('Copied!');
+        setTimeout(() => setFeedback(''), 2000);
+      } else {
+        setFeedback('Clipboard API not supported');
+        setTimeout(() => setFeedback(''), 2000);
+      }
     } catch (err) {
-      console.error(err.name, err.message);
-    }  
-  }
+      setFeedback('Failed to copy');
+      setTimeout(() => setFeedback(''), 2000);
+    }
+  };
+
+  return (
+    <div 
+      className={styles.cardWrapper}
+      onClick={copyImage} 
+      onMouseEnter={(e) => {
+        const tooltip = e.currentTarget.querySelector(`.${styles.tooltip}`);
+        tooltip.style.visibility = 'visible';
+        tooltip.style.opacity = 1;
+      }}
+      onMouseLeave={(e) => {
+        const tooltip = e.currentTarget.querySelector(`.${styles.tooltip}`);
+        tooltip.style.visibility = 'hidden';
+        tooltip.style.opacity = 0;
+      }}
+    >
+      <div className={styles.card}>
+        <div className={styles.cardContainer}>
+          <Image src={imgURL} layout="fill" alt="A wild logo appears." className={styles.iconimg}/>
+          <span className={styles.tooltip}>{feedback || 'Click to copy'}</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
   const logos = [
     {imgURL: '/logos/airflow_icon.png', imgType: 'icon'},
@@ -77,33 +111,9 @@ export default function Home() {
 
         <div className={styles.grid}>
 
-          {logos.map(function(logoItem) {
-            const imgURL = logoItem.imgURL;
-            const imgType = logoItem.imgType;
-            return (
-              <div key={logoItem.imgURL} className={styles.cardWrapper}>
-                <div 
-                  className={styles.card} 
-                  onClick={(e => copyImage(e, imgURL))} 
-                  onMouseEnter={(e) => {
-                    const tooltip = e.currentTarget.querySelector(`.${styles.tooltip}`);
-                    tooltip.style.visibility = 'visible'; 
-                    tooltip.style.opacity = 1;
-                  }}
-                  onMouseLeave={(e) => {
-                    const tooltip = e.currentTarget.querySelector(`.${styles.tooltip}`);
-                    tooltip.style.visibility = 'hidden'; 
-                    tooltip.style.opacity = 0;
-                  }}
-                >
-                  <div className={styles.cardContainer}>
-                    <Image className={styles.iconimg} src={imgURL} layout="fill" alt="A wild logo appears."/>
-                    <span className={styles.tooltip}>Click to copy</span>
-                  </div>
-                </div>
-              </div>
-            )
-          })}
+          {logos.map(logoItem => (
+            <CopyableLogo key={logoItem.imgURL} imgURL={logoItem.imgURL} imgType={logoItem.imgType} />
+          ))}
 
         </div>
 

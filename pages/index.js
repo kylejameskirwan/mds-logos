@@ -1,8 +1,8 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Script from 'next/script'
 import styles from '../styles/Home.module.css'
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function CopyableLogo({ imgURL, imgType }) {
   const [feedback, setFeedback] = useState('');
@@ -52,9 +52,36 @@ function CopyableLogo({ imgURL, imgType }) {
   );
 }
 
-function LogoSection({ title, logos }) {
+function Navigation({ categories }) {
   return (
-    <div className={styles.section}>
+    <nav className={styles.navigation}>
+      <div className={styles.navContent}>
+        <ul className={styles.navList}>
+          {categories.map(category => (
+            <li key={category} className={styles.navItem}>
+              <a href={`#${category.toLowerCase().replace(/\s+/g, '-')}`} className={styles.navLink}>
+                {category}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <a 
+          href="https://buymeacoffee.com/jimmiesrustlin" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className={styles.buyTokens}
+        >
+          Buy me tokens
+        </a>
+      </div>
+    </nav>
+  );
+}
+
+function LogoSection({ title, logos }) {
+  const sectionId = title.toLowerCase().replace(/\s+/g, '-');
+  return (
+    <div className={styles.section} id={sectionId}>
       <h2 className={styles.sectionTitle}>{title}</h2>
       <div className={styles.sectionGrid}>
         {logos.map(logoItem => (
@@ -67,22 +94,19 @@ function LogoSection({ title, logos }) {
 
 export default function Home() {
   const logosByCategory = {
-    'Data Catalog': [
-      {imgURL: "/logos/amundsen_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/amundsen_logo.png", imgType: 'logo'},
-      {imgURL: "/logos/stemma_logo_black.png", imgType: 'logo'},
-      {imgURL: "/logos/alation_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/alation_logo.png", imgType: 'logo'},
-      {imgURL: "/logos/collibra_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/collibra_logo.png", imgType: 'logo'},
-      {imgURL: "/logos/atlan_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/atlan_logo.png", imgType: 'logo'},
+    'Warehouses': [
+      {imgURL: "/logos/databricks_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/databricks_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/snowflake_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/snowflake_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/aws_redshift_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/aws_redshift_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/clickhouse_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/clickhouse_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/bigquery_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/bigquery_logo.png", imgType: 'logo'},
     ],
-    'Data Observability': [
-      {imgURL: "/logos/bigeye_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/bigeye_logo.png", imgType: 'logo'},
-    ],
-    'Orchestration and Transformation': [
+    'Transformation': [
       {imgURL: '/logos/airflow_icon.png', imgType: 'icon'},
       {imgURL: '/logos/airflow_logo.png', imgType: 'logo'},
       {imgURL: "/logos/census_icon.png", imgType: 'icon'},
@@ -98,40 +122,45 @@ export default function Home() {
       {imgURL: "/logos/prefect_icon.png", imgType: 'icon'},
       {imgURL: "/logos/prefect_logo_black.png", imgType: 'logo'},
     ],
-    'Streaming': [
-      {imgURL: "/logos/kafka_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/kafka_logo.png", imgType: 'logo'},
-      {imgURL: "/logos/confluent_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/confluent_logo.png", imgType: 'logo'},
-    ],
-    'Analytics': [
-      {imgURL: "/logos/tableau_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/tableau_logo.png", imgType: 'logo'},
-    ],
-    'Data Warehouse': [
-      {imgURL: "/logos/databricks_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/databricks_logo.png", imgType: 'logo'},
-      {imgURL: "/logos/snowflake_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/snowflake_logo.png", imgType: 'logo'},
-      {imgURL: "/logos/aws_redshift_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/aws_redshift_logo.png", imgType: 'logo'},
-      {imgURL: "/logos/clickhouse_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/clickhouse_logo.png", imgType: 'logo'},
-      {imgURL: "/logos/bigquery_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/bigquery_logo.png", imgType: 'logo'},
-    ],
     'Databases': [
       {imgURL: "/logos/postgres_icon.png", imgType: 'icon'},
       {imgURL: "/logos/postgres_logo.png", imgType: 'logo'},
       {imgURL: "/logos/mysql_logo.png", imgType: 'logo'},
       {imgURL: "/logos/sqlserver_logo.png", imgType: 'logo'},
     ],
-    'Everything Else': [
+    'Observability': [
+      {imgURL: "/logos/bigeye_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/bigeye_logo.png", imgType: 'logo'},
+    ],
+    'Catalogs': [
+      {imgURL: "/logos/amundsen_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/amundsen_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/stemma_logo_black.png", imgType: 'logo'},
+      {imgURL: "/logos/alation_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/alation_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/collibra_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/collibra_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/atlan_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/atlan_logo.png", imgType: 'logo'},
+    ],
+    'Analytics': [
+      {imgURL: "/logos/tableau_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/tableau_logo.png", imgType: 'logo'},
+    ],
+    'Streaming': [
+      {imgURL: "/logos/kafka_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/kafka_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/confluent_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/confluent_logo.png", imgType: 'logo'},
+    ],
+    'Other': [
       {imgURL: "/logos/rockset_logo.png", imgType: 'logo'},
       {imgURL: "/logos/aws_s3_icon.png", imgType: 'icon'},
       {imgURL: "/logos/aws_s3_logo.png", imgType: 'logo'},
     ],
   };
+
+  const categories = Object.keys(logosByCategory);
 
   return (
     <div className={styles.container}>
@@ -140,6 +169,22 @@ export default function Home() {
         <meta name="description" content="You need logos. We got logos." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Script
+        data-name="BMC-Widget"
+        data-cfasync="false"
+        src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+        data-id="kylejameskirwan"
+        data-description="Support me on Buy me a coffee!"
+        data-message="You're actually buying me tokens, but we can both pretend it's for coffee."
+        data-color="#5F7FFF"
+        data-position="Right"
+        data-x_margin="18"
+        data-y_margin="18"
+        strategy="lazyOnload"
+      />
+
+      <Navigation categories={categories} />
 
       <main className={styles.main}>
         <h1 className={styles.title}>

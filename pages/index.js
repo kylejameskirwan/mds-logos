@@ -52,7 +52,7 @@ function CopyableLogo({ imgURL, imgType }) {
   );
 }
 
-
+export default function Home() {
   const logos = [
     {imgURL: '/logos/airflow_icon.png', imgType: 'icon'},
     {imgURL: '/logos/airflow_logo.png', imgType: 'logo'},
@@ -110,11 +110,9 @@ function CopyableLogo({ imgURL, imgType }) {
         </p>
 
         <div className={styles.grid}>
-
           {logos.map(logoItem => (
             <CopyableLogo key={logoItem.imgURL} imgURL={logoItem.imgURL} imgType={logoItem.imgType} />
           ))}
-
         </div>
 
         <div className={styles.footer}>
@@ -124,5 +122,5 @@ function CopyableLogo({ imgURL, imgType }) {
         </div>
       </main>
     </div>
-  )
+  );
 }

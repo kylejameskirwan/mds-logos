@@ -81,11 +81,27 @@ export default function Home() {
             const imgURL = logoItem.imgURL;
             const imgType = logoItem.imgType;
             return (
-              <div key={logoItem.imgURL} onClick={(e => copyImage(e, {imgURL}))} className={styles.card}>
-                <div className={styles.cardContainer}>
-                  <Image className={styles.iconimg} src={imgURL} layout="fill" alt="A wild logo appears."/>
+              <div key={logoItem.imgURL} className={styles.cardWrapper}>
+                <div 
+                  className={styles.card} 
+                  onClick={(e => copyImage(e, imgURL))} 
+                  onMouseEnter={(e) => {
+                    const tooltip = e.currentTarget.querySelector(`.${styles.tooltip}`);
+                    tooltip.style.visibility = 'visible'; 
+                    tooltip.style.opacity = 1;
+                  }}
+                  onMouseLeave={(e) => {
+                    const tooltip = e.currentTarget.querySelector(`.${styles.tooltip}`);
+                    tooltip.style.visibility = 'hidden'; 
+                    tooltip.style.opacity = 0;
+                  }}
+                >
+                  <div className={styles.cardContainer}>
+                    <Image className={styles.iconimg} src={imgURL} layout="fill" alt="A wild logo appears."/>
+                    <span className={styles.tooltip}>Click to copy</span>
+                  </div>
                 </div>
-              </div> 
+              </div>
             )
           })}
 

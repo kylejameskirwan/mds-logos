@@ -117,6 +117,9 @@ export default function Home() {
       {imgURL: "/logos/teradata_logo.png", imgType: 'logo'},
       {imgURL: "/logos/vertica_logo.png", imgType: 'logo'},
       {imgURL: "/logos/sap_hana_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/netezza_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/apache_calcite_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/apache_calcite_logo.png", imgType: 'logo'},
     ],
     'Transformation': [
       {imgURL: '/logos/airflow_icon.png', imgType: 'icon'},
@@ -133,12 +136,21 @@ export default function Home() {
       {imgURL: "/logos/fivetran_logo.png", imgType: 'logo'},
       {imgURL: "/logos/prefect_icon.png", imgType: 'icon'},
       {imgURL: "/logos/prefect_logo_black.png", imgType: 'logo'},
+      {imgURL: "/logos/azure_data_factory_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/azure_data_factory_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/snaplogic_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/snaplogic_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/ibm_datastage_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/matillion_logo.png", imgType: 'logo'},
     ],
     'Databases': [
       {imgURL: "/logos/postgres_icon.png", imgType: 'icon'},
       {imgURL: "/logos/postgres_logo.png", imgType: 'logo'},
       {imgURL: "/logos/mysql_logo.png", imgType: 'logo'},
       {imgURL: "/logos/sqlserver_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/oracle_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/oracle_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/aws_aurora_icon.png", imgType: 'icon'},
     ],
     'Observability': [
       {imgURL: "/logos/bigeye_icon.png", imgType: 'icon'},
@@ -147,7 +159,6 @@ export default function Home() {
     'Catalogs': [
       {imgURL: "/logos/amundsen_icon.png", imgType: 'icon'},
       {imgURL: "/logos/amundsen_logo.png", imgType: 'logo'},
-      {imgURL: "/logos/stemma_logo_black.png", imgType: 'logo'},
       {imgURL: "/logos/alation_icon.png", imgType: 'icon'},
       {imgURL: "/logos/alation_logo.png", imgType: 'logo'},
       {imgURL: "/logos/collibra_icon.png", imgType: 'icon'},
@@ -158,6 +169,12 @@ export default function Home() {
     'Analytics': [
       {imgURL: "/logos/tableau_icon.png", imgType: 'icon'},
       {imgURL: "/logos/tableau_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/azure_powerbi_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/azure_powerbi_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/cognos_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/looker_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/looker_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/qlik_logo.png", imgType: 'logo'},
     ],
     'Streaming': [
       {imgURL: "/logos/kafka_icon.png", imgType: 'icon'},
@@ -165,10 +182,12 @@ export default function Home() {
       {imgURL: "/logos/confluent_icon.png", imgType: 'icon'},
       {imgURL: "/logos/confluent_logo.png", imgType: 'logo'},
     ],
-    'Other': [
-      {imgURL: "/logos/rockset_logo.png", imgType: 'logo'},
+    'Storage': [
       {imgURL: "/logos/aws_s3_icon.png", imgType: 'icon'},
       {imgURL: "/logos/aws_s3_logo.png", imgType: 'logo'},
+    ],
+    'Real-time Analytics': [
+      {imgURL: "/logos/rockset_logo.png", imgType: 'logo'},
     ],
   };
 

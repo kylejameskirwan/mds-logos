@@ -74,17 +74,95 @@ function BottomBar() {
 }
 
 function TopNav({ searchQuery, setSearchQuery }) {
+  const [iconOffset, setIconOffset] = useState({ x: 0, y: 0 });
+  const [totalMovement, setTotalMovement] = useState(0);
+  const [isPoofing, setIsPoofing] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
+  const iconRef = React.useRef(null);
+  const lastOffset = React.useRef({ x: 0, y: 0 });
+
+  const handleMouseMove = (e) => {
+    if (!iconRef.current || isPoofing || isHidden) return;
+    
+    const rect = iconRef.current.getBoundingClientRect();
+    const iconCenterX = rect.left + rect.width / 2;
+    const iconCenterY = rect.top + rect.height / 2;
+    
+    const distanceX = e.clientX - iconCenterX;
+    const distanceY = e.clientY - iconCenterY;
+    const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+    
+    // If mouse is within 50px of the icon
+    if (distance < 50) {
+      // Calculate movement away from mouse (max 5px in any direction)
+      const moveX = Math.min(Math.max(-distanceX / 10, -5), 5);
+      const moveY = Math.min(Math.max(-distanceY / 10, -5), 5);
+      
+      // Calculate movement distance from last position
+      const movementDelta = Math.sqrt(
+        Math.pow(moveX - lastOffset.current.x, 2) + 
+        Math.pow(moveY - lastOffset.current.y, 2)
+      );
+      
+      const newTotalMovement = totalMovement + movementDelta;
+      setTotalMovement(newTotalMovement);
+      
+      // Check if we've hit the threshold
+      if (newTotalMovement >= 50) {
+        setIsPoofing(true);
+        
+        // After 1 second, hide the icon
+        setTimeout(() => {
+          setIsPoofing(false);
+          setIsHidden(true);
+          
+          // After 30 seconds, reset everything
+          setTimeout(() => {
+            setIsHidden(false);
+            setTotalMovement(0);
+            setIconOffset({ x: 0, y: 0 });
+            lastOffset.current = { x: 0, y: 0 };
+          }, 30000);
+        }, 1000);
+      } else {
+        setIconOffset({ x: moveX, y: moveY });
+        lastOffset.current = { x: moveX, y: moveY };
+      }
+    } else {
+      // Reset to center when mouse is far away
+      setIconOffset({ x: 0, y: 0 });
+      lastOffset.current = { x: 0, y: 0 };
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (!isPoofing && !isHidden) {
+      setIconOffset({ x: 0, y: 0 });
+      lastOffset.current = { x: 0, y: 0 };
+    }
+  };
+
   return (
-    <nav className={styles.topNav}>
+    <nav className={styles.topNav} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
       <div className={styles.topNavContent}>
         <div className={styles.topNavLeft}>
-          <Image 
-            src="/doge.png" 
-            width={24} 
-            height={24} 
-            alt="Doge" 
-            className={styles.topNavIcon}
-          />
+          <div 
+            ref={iconRef}
+            className={styles.topNavIconWrapper}
+            style={{
+              transform: `translate(${iconOffset.x}px, ${iconOffset.y}px)`,
+              transition: 'transform 0.1s ease-out',
+              visibility: isHidden ? 'hidden' : 'visible'
+            }}
+          >
+            <Image 
+              src={isPoofing ? "/poof.gif" : "/doge.png"} 
+              width={24} 
+              height={24} 
+              alt={isPoofing ? "Poof" : "Doge"} 
+              className={styles.topNavIcon}
+            />
+          </div>
           <h2 className={styles.topNavTitle}>
             Modern Data Stack Logos
           </h2>

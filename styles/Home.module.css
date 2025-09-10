@@ -61,6 +61,15 @@
   left: 2rem;
 }
 
+.topNavIconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
 .topNavIcon {
   width: 24px;
   height: 24px;

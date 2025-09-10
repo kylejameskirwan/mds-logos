@@ -101,8 +101,6 @@ export default function Home() {
       {imgURL: "/logos/snowflake_logo.png", imgType: 'logo'},
       {imgURL: "/logos/aws_redshift_icon.png", imgType: 'icon'},
       {imgURL: "/logos/aws_redshift_logo.png", imgType: 'logo'},
-      {imgURL: "/logos/clickhouse_icon.png", imgType: 'icon'},
-      {imgURL: "/logos/clickhouse_logo.png", imgType: 'logo'},
       {imgURL: "/logos/bigquery_icon.png", imgType: 'icon'},
       {imgURL: "/logos/bigquery_logo.png", imgType: 'logo'},
       {imgURL: "/logos/athena_icon.png", imgType: 'icon'},
@@ -175,6 +173,10 @@ export default function Home() {
       {imgURL: "/logos/looker_icon.png", imgType: 'icon'},
       {imgURL: "/logos/looker_logo.png", imgType: 'logo'},
       {imgURL: "/logos/qlik_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/sigma_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/sigma_logo.png", imgType: 'logo'},
+      {imgURL: "/logos/thoughtspot_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/thoughtspot_logo.png", imgType: 'logo'},
     ],
     'Streaming': [
       {imgURL: "/logos/kafka_icon.png", imgType: 'icon'},
@@ -187,6 +189,8 @@ export default function Home() {
       {imgURL: "/logos/aws_s3_logo.png", imgType: 'logo'},
     ],
     'Real-time Analytics': [
+      {imgURL: "/logos/clickhouse_icon.png", imgType: 'icon'},
+      {imgURL: "/logos/clickhouse_logo.png", imgType: 'logo'},
       {imgURL: "/logos/rockset_logo.png", imgType: 'logo'},
     ],
   };

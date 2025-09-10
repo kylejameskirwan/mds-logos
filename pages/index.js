@@ -52,19 +52,14 @@ function CopyableLogo({ imgURL, imgType }) {
   );
 }
 
-function Navigation({ categories }) {
+function BottomBar() {
   return (
-    <nav className={styles.navigation}>
-      <div className={styles.navContent}>
-        <ul className={styles.navList}>
-          {categories.map(category => (
-            <li key={category} className={styles.navItem}>
-              <a href={`#${category.toLowerCase().replace(/\s+/g, '-')}`} className={styles.navLink}>
-                {category}
-              </a>
-            </li>
-          ))}
-        </ul>
+    <nav className={styles.bottomBar}>
+      <div className={styles.bottomBarContent}>
+        <div className={styles.bottomSpacer}></div>
+        <p className={styles.bottomDescription}>
+          Much modern. Such stack. So data. Wow. <Image src="/doge.gif" layout="fixed" width={20} height={20} alt="Such doge." />
+        </p>
         <a 
           href="https://buymeacoffee.com/jimmiesrustlin" 
           target="_blank" 
@@ -73,6 +68,37 @@ function Navigation({ categories }) {
         >
           Buy me tokens
         </a>
+      </div>
+    </nav>
+  );
+}
+
+function TopNav({ searchQuery, setSearchQuery }) {
+  return (
+    <nav className={styles.topNav}>
+      <div className={styles.topNavContent}>
+        <h2 className={styles.topNavTitle}>
+          Modern Data Stack Logos
+        </h2>
+        <div className={styles.searchContainer}>
+          <input
+            type="text"
+            placeholder="Search logos..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className={styles.searchBar}
+          />
+          {searchQuery && (
+            <button 
+              onClick={() => setSearchQuery('')}
+              className={styles.clearButton}
+              aria-label="Clear search"
+            >
+              ✕
+            </button>
+          )}
+        </div>
+        <div className={styles.navSpacer}></div>
       </div>
     </nav>
   );
@@ -93,6 +119,8 @@ function LogoSection({ title, logos }) {
 }
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState('');
+  
   const logosByCategory = {
     'Warehouses': [
       {imgURL: "/logos/databricks_icon.png", imgType: 'icon'},
@@ -195,7 +223,25 @@ export default function Home() {
     ],
   };
 
-  const categories = Object.keys(logosByCategory);
+  const filteredLogosByCategory = {};
+  
+  if (searchQuery) {
+    Object.entries(logosByCategory).forEach(([category, logos]) => {
+      const filteredLogos = logos.filter(logo => {
+        const fileName = logo.imgURL.toLowerCase();
+        const query = searchQuery.toLowerCase();
+        return fileName.includes(query) || category.toLowerCase().includes(query);
+      });
+      
+      if (filteredLogos.length > 0) {
+        filteredLogosByCategory[category] = filteredLogos;
+      }
+    });
+  } else {
+    Object.assign(filteredLogosByCategory, logosByCategory);
+  }
+  
+  const categories = Object.keys(filteredLogosByCategory);
 
   return (
     <div className={styles.container}>
@@ -219,19 +265,12 @@ export default function Home() {
         strategy="lazyOnload"
       />
 
-      <Navigation categories={categories} />
+      <TopNav searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+      <BottomBar />
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Modern Data <br/> Stack Logos
-        </h1>
-
-        <p className={styles.description}>
-          Much modern. Such stack. So data. Wow. <Image src="/doge.gif" layout="fixed" width={25} height={25} alt="Such doge." />
-        </p>
-
         <div className={styles.sections}>
-          {Object.entries(logosByCategory).map(([category, logos]) => (
+          {Object.entries(filteredLogosByCategory).map(([category, logos]) => (
             <LogoSection key={category} title={category} logos={logos} />
           ))}
         </div>

@@ -77,9 +77,18 @@ function TopNav({ searchQuery, setSearchQuery }) {
   return (
     <nav className={styles.topNav}>
       <div className={styles.topNavContent}>
-        <h2 className={styles.topNavTitle}>
-          Modern Data Stack Logos
-        </h2>
+        <div className={styles.topNavLeft}>
+          <Image 
+            src="/doge.png" 
+            width={24} 
+            height={24} 
+            alt="Doge" 
+            className={styles.topNavIcon}
+          />
+          <h2 className={styles.topNavTitle}>
+            Modern Data Stack Logos
+          </h2>
+        </div>
         <div className={styles.searchContainer}>
           <input
             type="text"
@@ -111,7 +120,11 @@ function LogoSection({ title, logos }) {
       <h2 className={styles.sectionTitle}>{title}</h2>
       <div className={styles.sectionGrid}>
         {logos.map(logoItem => (
-          <CopyableLogo key={logoItem.imgURL} imgURL={logoItem.imgURL} imgType={logoItem.imgType} />
+          <CopyableLogo 
+            key={logoItem.imgURL} 
+            imgURL={logoItem.imgURL} 
+            imgType={logoItem.imgType}
+          />
         ))}
       </div>
     </div>
@@ -271,7 +284,11 @@ export default function Home() {
       <main className={styles.main}>
         <div className={styles.sections}>
           {Object.entries(filteredLogosByCategory).map(([category, logos]) => (
-            <LogoSection key={category} title={category} logos={logos} />
+            <LogoSection 
+              key={category} 
+              title={category} 
+              logos={logos}
+            />
           ))}
         </div>
 

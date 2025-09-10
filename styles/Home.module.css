@@ -53,14 +53,25 @@
   position: relative;
 }
 
+.topNavLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  position: absolute;
+  left: 2rem;
+}
+
+.topNavIcon {
+  width: 24px;
+  height: 24px;
+}
+
 .topNavTitle {
   font-size: 1.2rem;
   font-weight: 700;
   margin: 0;
   color: #000;
   white-space: nowrap;
-  position: absolute;
-  left: 2rem;
 }
 
 
@@ -205,6 +216,7 @@
   color: #333;
 }
 
+
 .smalltext {
   margin: 0 0 2rem 0;
   line-height: 1.5;
@@ -321,9 +333,12 @@
     padding: 0 1rem;
   }
 
+  .topNavLeft {
+    left: 1rem;
+  }
+
   .topNavTitle {
     font-size: 0.9rem;
-    left: 1rem;
   }
 
   .bottomBarContent {
@@ -361,6 +376,7 @@
     padding: 0.4rem 2rem 0.4rem 0.8rem;
   }
 
+
   .sectionTitle {
     font-size: 1.5rem;
     text-align: center;
@@ -384,9 +400,18 @@
   .smalltext {
     text-align: center;
   }
+  .topNavLeft {
+    left: 1rem;
+    gap: 0.5rem;
+  }
+
   .topNavTitle {
     font-size: 0.8rem;
-    left: 1rem;
+  }
+
+  .topNavIcon {
+    width: 20px;
+    height: 20px;
   }
   .bottomDescription {
     display: none;
